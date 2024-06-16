@@ -5,8 +5,8 @@ set -euo pipefail
 DEFCONFIG="nexus_defconfig"
 TOOLCHAIN="kdrag0n/proton-clang"
 AK3="veshrao/AK3"
-TOOLCHAIN_DIR="/home/$USER/toolchain"
-AK3_DIR="/home/$USER/AnyKernel3"
+TOOLCHAIN_DIR="/workspace/kernel_xiaomi_mi8937/toolchain"
+AK3_DIR="/workspace/kernel_xiaomi_mi8937/AnyKernel3"
 KDIR="$(pwd)"
 
 # Options
@@ -39,8 +39,8 @@ fi
 # Building
 PATH="${TOOLCHAIN_DIR}/bin/:$PATH"
 export KBUILD_COMPILER_STRING="${TOOLCHAIN_DIR}/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')"
-export KBUILD_BUILD_USER="vesh"
-export KBUILD_BUILD_HOST="projects-nexus"
+export KBUILD_BUILD_USER="Rapli"
+export KBUILD_BUILD_HOST="Projects-Anime"
 read -rp "[?] Insert kernel version: " VERSION
 if [ -f out/arch/arm64/boot/Image.gz-dtb ]; then rm -rf out/arch/arm64/boot/Image.gz-dtb; fi
 
@@ -53,7 +53,7 @@ make -j$(nproc --all) ARCH=arm64 \
                       LLVM=1
 
 # Zipping
-NAME="Nexus"
+NAME="ZeroTwo"
 DEVICE="mi8937"
 ZIP="$NAME"-"$VERSION"-"$DEVICE".zip
 
