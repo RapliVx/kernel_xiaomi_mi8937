@@ -47,7 +47,7 @@ echo -e " "
 
 function clean() {
     echo -e "\n"
-    echo -e "$red << cleaning up >> \\033[0m"
+    echo -e "$red [!] CLEANING UP \\033[0m"
     echo -e "\n"
     rm -rf out
     make mrproper
@@ -69,7 +69,9 @@ kernel="out/arch/arm64/boot/Image.gz-dtb"
 ZIPNAME="ZeroTwo-Kernel-[$VERSION]-$(date '+%Y%m%d-%H%M').zip"
 
 if [ -f "$kernel" ]; then
-	echo -e "\nKernel compiled succesfully! Zipping up...\n"
+		echo -e "$green===============================================\033[0m"
+		echo -e "$green= [+] Kernel compiled succesfully! Zipping up...\033[0m"
+		echo -e "$green================================================\033[0m"
 	if [ -d "$AK3_DIR" ]; then
 		cp -r $AK3_DIR AnyKernel3
 	elif ! git clone -q https://github.com/RapliVx/AnyKernel3.git -b ulysse; then
