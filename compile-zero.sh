@@ -43,7 +43,7 @@ echo -e " "
 read -rp "[?] Insert kernel version: " VERSION
 echo -e " "
 
-# Build Script
+# Clean Out Dir
 
 function clean() {
     echo -e "\n"
@@ -53,6 +53,10 @@ function clean() {
     make mrproper
 }
 
+# Speed up build process
+MAKE="./makeparallel"
+
+# Build Start Here
 function build_kernel() {
 export PATH="$TC_DIR/bin:$PATH"
 make O=out ARCH=arm64 $DEFCONFIG
@@ -66,7 +70,7 @@ make -j$(nproc --all) O=out ARCH=arm64 \
 kernel="out/arch/arm64/boot/Image.gz-dtb"
 
 # ZIPNAME
-ZIPNAME="ZeroTwo-Kernel-[$VERSION]-$(date '+%Y%m%d-%H%M').zip"
+ZIPNAME="Arisuu-Kernel-[$VERSION]-$(date '+%Y%m%d-%H%M').zip"
 
 if [ -f "$kernel" ]; then
 		echo -e "$green===============================================\033[0m"
